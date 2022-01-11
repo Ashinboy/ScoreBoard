@@ -28,6 +28,8 @@ class ViewController: UIViewController {
     var leftGame:Int = 0
     var rightGame:Int = 0
     
+    
+    
 //    var gameCount = 0
     
     override func viewDidLoad() {
@@ -46,17 +48,17 @@ class ViewController: UIViewController {
                 teamRScore = 0
                 rightScore.text = "0\(teamRScore)"
             }
-            scoring(game: leftGameNumber, count: leftGame,team: leftScore,score: teamLScore, direction: .left, winner: leftName.text)
+            scoring(team: leftScore,score: teamLScore, direction: .left, winner: leftName.text)
            
 
         }else if sender.direction == .right{
             teamLScore -= 1
             if teamLScore < 0 {
                 teamLScore = 0
-                scoring(game: leftGameNumber, count: leftGame,team: leftScore, score: teamLScore, direction: .right, winner: leftName.text)
+                scoring(team: leftScore, score: teamLScore, direction: .right, winner: leftName.text)
                
             }else{
-                scoring(game: leftGameNumber, count: leftGame,team: leftScore, score: teamLScore, direction: .left, winner: leftName.text)
+                scoring(team: leftScore, score: teamLScore, direction: .left, winner: leftName.text)
             }
     }
        
@@ -76,15 +78,15 @@ class ViewController: UIViewController {
                 teamLScore = 0
                 leftScore.text = "0\(teamLScore)"
             }
-            scoring(game:rightGameNumber, count: rightGame,team: rightScore, score: teamRScore, direction: .left, winner: rightName.text)
+            scoring(team: rightScore, score: teamRScore, direction: .left, winner: rightName.text)
             
         }else if sender.direction == .right{
             teamRScore -= 1
             if teamRScore < 0 {
                 teamRScore = 0
-                scoring(game:rightGameNumber,count: rightGame,team: rightScore , score: teamRScore, direction: .right, winner: rightName.text)
+                scoring(team: rightScore , score: teamRScore, direction: .right, winner: rightName.text)
             }else{
-                scoring(game:rightGameNumber, count: rightGame,team: rightScore ,score: teamRScore, direction: .left, winner: rightName.text)
+                scoring(team: rightScore ,score: teamRScore, direction: .left, winner: rightName.text)
             }
     }
     }
@@ -93,22 +95,20 @@ class ViewController: UIViewController {
     
     
     @IBAction func changeSideBtn(_ sender: UIButton) {
-//        let leftNum = rightGameNumber.text
-//        let rightNum = leftGameNumber.text
         if teamLScore < 10 , teamRScore < 10{
             leftScore.text = "0\(teamRScore)"
             rightScore.text = "0\(teamLScore)"
         }
+       
         
-        leftGameNumber.text = "\(rightGame)"
-        rightGameNumber.text = "\(leftGame)"
+        changSign()
         
-        teamLScore = teamRScore
-        leftGame = rightGame
+        
     }
     
+    //重設比賽，將各隊分數歸零
     @IBAction func resetBtn(_ sender: UIButton) {
-        resetGame(winner: nil)
+        endOfGame(winner: nil)
         leftGame = 0
         rightGame = 0
         teamLScore = 0
@@ -117,12 +117,12 @@ class ViewController: UIViewController {
     
     
     
-    // 寫出得分隊伍，目前得分，方向，是哪一隊贏球，最後判斷比賽是否結束
+    // 判斷得分結果，設定參數，得分隊伍，目前分數，滑動方向，是哪一隊贏球，最後判斷比賽是否結束
     func
-    scoring (game: UILabel,count: Int,team:UILabel ,score:Int,direction:UISwipeGestureRecognizer.Direction,winner:String?){
+    scoring (team:UILabel ,score:Int,direction:UISwipeGestureRecognizer.Direction,winner:String?){
         if direction == .left{
             if score == 11{
-                resetGame(winner: winner)
+                endOfGame(winner: winner)
                 team.text = "\(score)"
             }else{
                 if score < 10{
@@ -144,9 +144,9 @@ class ViewController: UIViewController {
         }
     }
     
-    //重設比賽，將各隊分數歸零，並判斷誰是獲勝者給予對應的數值
+    //判斷誰是獲勝者給予對應的數值
     func
-    resetGame (winner:String?){
+    endOfGame (winner:String?){
         if teamLScore == 11{
             teamLScore -= 12
            
@@ -171,7 +171,39 @@ class ViewController: UIViewController {
         }
     }
     
-    
+    func changSign() {
+        
+        let changeGLNum = leftGame
+        let changeGRNum = rightGame
+        
+        let changeLNum = teamLScore
+        let changeRNum = teamRScore
+        
+        let changeLGame = leftGameNumber.text
+        let changeRGame = rightGameNumber.text
+        
+        let changeLScore = leftScore.text
+        let changeRScore = rightScore.text
+        
+        let changeLName = leftName.text
+        let changeRName = rightName.text
+        
+        leftGameNumber.text = changeRGame
+        rightGameNumber.text = changeLGame
+        
+        leftScore.text = changeRScore
+        rightScore.text = changeLScore
+        
+        leftName.text = changeRName
+        rightName.text = changeLName
+        
+        leftGame = changeGRNum
+        rightGame = changeGLNum
+        
+        teamLScore = changeRNum
+        teamRScore = changeLNum
+        
+    }
     
     
     
