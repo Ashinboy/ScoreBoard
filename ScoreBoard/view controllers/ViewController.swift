@@ -28,8 +28,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var rightScore: UILabel!
     @IBOutlet weak var rightName: UILabel!
     
-    var teamLNumber:Int = 1
-    var teamRNumber:Int = 2
+//    var teamLNumber:Int = 1
+//    var teamRNumber:Int = 2
     
     //gameNumber
     @IBOutlet weak var leftGameNumber: UILabel!
@@ -156,7 +156,7 @@ class ViewController: UIViewController {
     
  
     @IBAction func changeSideBtn(_ sender: UIButton) {
-        changSign()
+        changSide()
     }
     
     //重設比賽，將各隊分數歸零
@@ -194,7 +194,7 @@ class ViewController: UIViewController {
         }
     }
     
-    //view change
+    //view change 輪替發球
     func viewChange(){
         if showServe[0].isHidden == true{
             let sum = score.leftScoreA + score.rightScoreB
@@ -218,7 +218,7 @@ class ViewController: UIViewController {
         
     }
     
-    //deuce view
+    //deuce view deuce的輪替
     func deuceView(){
         if showServe[0].isHidden == false{
             let sum = score.leftScoreA - score.rightScoreB
@@ -337,7 +337,7 @@ class ViewController: UIViewController {
     
     
     
-    func changSign() {
+    func changSide() {
         
         let changeGLNum = leftGame
         let changeGRNum = rightGame
