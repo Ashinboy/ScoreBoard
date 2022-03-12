@@ -15,7 +15,7 @@ class ViewController: UIViewController {
     
     
     //serve發球
-   
+    
     @IBOutlet var showServe: [UIView]!
     var index = Int.random(in: 0...1)
     
@@ -38,9 +38,9 @@ class ViewController: UIViewController {
     var leftGame:Int = 0
     var rightGame:Int = 0
     
-    var score = Score(leftScoreA: 0, rightScoreB: 0, largeScoreA: 0, largeScoreB: 0 )
+    var score = Score(leftScoreA: 0, rightScoreB: 0)
     
-   let gamerState = GamerState(P1: "TEAM 1", P2: "TEAM 2")
+//    let gamerState = GamerState(P1: "TEAM 1", P2: "TEAM 2")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -100,9 +100,6 @@ class ViewController: UIViewController {
                 deuce()
             }
         }
-        
-     
-        
     }
     
     @IBAction func teamRGesture(_ sender: UISwipeGestureRecognizer) {
@@ -140,7 +137,7 @@ class ViewController: UIViewController {
         case 10 :
             if score.rightScoreB == 10{
                 deuce()
-               
+                
             }
         case 11 :
             if score.leftScoreA < 10{
@@ -155,12 +152,9 @@ class ViewController: UIViewController {
                 deuce()
             }
         }
-       
     }
     
-    
-    
-    
+ 
     @IBAction func changeSideBtn(_ sender: UIButton) {
         changSign()
     }
@@ -309,7 +303,7 @@ class ViewController: UIViewController {
             }else if leftName.text == "TEAM 2"{
                 AlertRight()
             }
-               
+            
         }else if sum2 == 2{
             winnerLabel[1].isHidden = false
             winnerLabel[0].isHidden = true
@@ -382,7 +376,6 @@ class ViewController: UIViewController {
             showServe[1].isHidden = false
             showServe[0].isHidden = true
         }
-        
     }
 }
 

@@ -7,8 +7,8 @@
 
 import Foundation
 
-struct GamerState{
-    let P1 :String
-    let P2 :String
-}
+//struct GamerState{
+//    let P1 :String
+//    let P2 :String
+//}
 

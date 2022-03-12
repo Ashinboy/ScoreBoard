@@ -22,11 +22,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="小林同學2-2" translatesAutoresizingMaskIntoConstraints="NO" id="tsG-T8-UAg">
-                                <rect key="frame" x="550" y="0.0" width="300" height="414"/>
+                                <rect key="frame" x="489" y="-24" width="356" height="462"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="樊振東2-1" translatesAutoresizingMaskIntoConstraints="NO" id="4Uh-cW-gQ6">
-                                <rect key="frame" x="0.0" y="-12" width="300" height="414"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Peter3" translatesAutoresizingMaskIntoConstraints="NO" id="4Uh-cW-gQ6">
+                                <rect key="frame" x="-48" y="0.0" width="348" height="513"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="T8Z-WZ-Y22">
@@ -225,8 +225,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Peter3" width="237" height="350"/>
         <image name="小林同學2-2" width="588" height="564"/>
-        <image name="樊振東2-1" width="800" height="533"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
