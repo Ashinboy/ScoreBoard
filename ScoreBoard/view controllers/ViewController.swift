@@ -13,6 +13,8 @@ class ViewController: UIViewController {
     //winnerLabel
     @IBOutlet var winnerLabel: [UILabel]!
     
+    @IBOutlet weak var leftStrokeBtn: UIButton!
+    @IBOutlet weak var rightStrokeBtn: UIButton!
     
     //serve發球
     
@@ -28,8 +30,6 @@ class ViewController: UIViewController {
     @IBOutlet weak var rightScore: UILabel!
     @IBOutlet weak var rightName: UILabel!
     
-//    var teamLNumber:Int = 1
-//    var teamRNumber:Int = 2
     
     //gameNumber
     @IBOutlet weak var leftGameNumber: UILabel!
@@ -40,7 +40,11 @@ class ViewController: UIViewController {
     
     var score = Score(leftScoreA: 0, rightScoreB: 0)
     
-//    let gamerState = GamerState(P1: "TEAM 1", P2: "TEAM 2")
+    
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask{
+        .landscape
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,6 +55,22 @@ class ViewController: UIViewController {
         showServe[index].isHidden = true
         winnerLabel[0].isHidden = true
         winnerLabel[1].isHidden = true
+        
+        //button stroke
+        
+        //L
+        leftStrokeBtn.backgroundColor = .clear
+        leftStrokeBtn.layer.cornerRadius = 5
+        leftStrokeBtn.layer.borderWidth = 4
+        leftStrokeBtn.layer.borderColor = UIColor.white.cgColor
+        leftStrokeBtn.alpha = 0.3
+        
+        //R
+        rightStrokeBtn.backgroundColor = .clear
+        rightStrokeBtn.layer.cornerRadius = 5
+        rightStrokeBtn.layer.borderWidth = 4
+        rightStrokeBtn.layer.borderColor = UIColor.white.cgColor
+        rightStrokeBtn.alpha = 0.3
     }
     @IBAction func teamLGesture(_ sender: UISwipeGestureRecognizer) {
         
@@ -319,16 +339,16 @@ class ViewController: UIViewController {
     
     //UIAlert的方法
     func AlertLeft(){
-        let controller = UIAlertController(title: "太會打了吧!", message: "恭喜 TEAM 1 獲勝", preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "結束", style: .default, handler: nil)
+        let controller = UIAlertController(title: "Amazing!", message: "Congratulations to team 1 for the win!", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "Done", style: .default, handler: nil)
         controller.addAction(okAction)
         present(controller, animated: true, completion: nil)
         newGame()
     }
     
     func AlertRight(){
-        let controller = UIAlertController(title: "太會打了吧!", message: "恭喜 TEAM 2 獲勝", preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "結束", style: .default, handler: nil)
+        let controller = UIAlertController(title: "Amazing!", message: "Congratulations to team 2 for the win!", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "Done", style: .default, handler: nil)
         controller.addAction(okAction)
         present(controller, animated: true, completion: nil)
         newGame()
