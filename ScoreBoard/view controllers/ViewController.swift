@@ -37,6 +37,7 @@ class ViewController: UIViewController {
     
     var leftGame:Int = 0
     var rightGame:Int = 0
+    var isGameStarted: Bool = false
     
     var score = Score(leftScoreA: 0, rightScoreB: 0)
     
@@ -49,6 +50,7 @@ class ViewController: UIViewController {
         case left
         case right
     }
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -94,7 +96,7 @@ class ViewController: UIViewController {
     //重設比賽，將各隊分數歸零
     @IBAction func resetBtn(_ sender: UIButton) {
         endOfGame(winner: nil)
-        viewChange()
+        viewChange(scoreChanged: false)
         leftGame = 0
         rightGame = 0
         leftGameNumber.text = "0"
@@ -104,15 +106,20 @@ class ViewController: UIViewController {
         winnerLabel[0].isHidden = true
         winnerLabel[1].isHidden = true
         newGame()
+        isGameStarted = false
     }
     
     
     private func handleSwipeGesture(for team: Team, gesture: UISwipeGestureRecognizer) {
+        if !isGameStarted {
+            isGameStarted = true
+        }
+        
         let isLeftTeam = team == .left
         
         /// update score variable
         var score = isLeftTeam ? self.score.leftScoreA : self.score.rightScoreB
-        var scoreLabel = isLeftTeam ? self.leftScore : self.rightScore
+        let scoreLabel = isLeftTeam ? self.leftScore : self.rightScore
         
         switch gesture.direction {
         case .left:
@@ -135,6 +142,8 @@ class ViewController: UIViewController {
             self.score.rightScoreB = score
         }
         
+        let previousScore = score // record score before rightGenture
+        
         if self.score.leftScoreA >= 10 && self.score.rightScoreB >= 10 {
             if abs(self.score.leftScoreA - self.score.rightScoreB) >= 2 {
                 endOfGame(winner: isLeftTeam ? leftName.text : rightName.text )
@@ -145,8 +154,8 @@ class ViewController: UIViewController {
             endOfGame(winner: isLeftTeam ? leftName.text : rightName.text)
         }
         
-    
-        viewChange()
+        let scoreChanged = previousScore != score
+        viewChange(scoreChanged: scoreChanged)
     }
     
     
@@ -171,7 +180,22 @@ class ViewController: UIViewController {
     }
     
     //view change 輪替發球
-    func viewChange(){
+    func viewChange(scoreChanged: Bool){
+        guard isGameStarted else { return }
+        
+        let leftScoreA = score.leftScoreA
+        let rightScoreB = score.rightScoreB
+        
+        if !scoreChanged {
+            return
+        }
+        
+        
+        if leftScoreA == 0 && rightScoreB == 0 || leftScoreA == 0 && rightScoreB != 0 || rightScoreB == 0 && leftScoreA != 0 {
+            return
+        }
+        
+        
         if showServe[0].isHidden == true{
             let sum = score.leftScoreA + score.rightScoreB
             if sum % 2 == 0{
