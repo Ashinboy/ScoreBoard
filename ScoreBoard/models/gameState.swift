@@ -6,9 +6,12 @@
 //
 
 import Foundation
+import UIKit
 
-//struct GamerState{
-//    let P1 :String
-//    let P2 :String
-//}
-
+struct TeamInfo {
+    var score: Int
+    var gameWins: Int
+    var name: String
+    var scpreLabel: UILabel
+    var gameLabel: UILabel
+}

@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
     <device id="retina6_1" orientation="landscape" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -16,21 +17,20 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SQl-fE-nr6">
-                                <rect key="frame" x="44" y="0.0" width="808" height="414"/>
+                                <rect key="frame" x="48" y="0.0" width="800" height="414"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launchScreen2" translatesAutoresizingMaskIntoConstraints="NO" id="9TJ-Kz-G9y">
-                                        <rect key="frame" x="329" y="121.5" width="150" height="150"/>
+                                        <rect key="frame" x="328" y="135" width="144" height="144"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="150" id="WDb-rz-OQm"/>
-                                            <constraint firstAttribute="width" constant="150" id="rtr-aN-gNB"/>
-                                            <constraint firstAttribute="width" secondItem="9TJ-Kz-G9y" secondAttribute="height" multiplier="1:1" id="snL-J7-85u"/>
+                                            <constraint firstAttribute="width" secondItem="9TJ-Kz-G9y" secondAttribute="height" multiplier="1:1" id="mVb-Gy-s1L"/>
                                         </constraints>
                                     </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="9TJ-Kz-G9y" firstAttribute="centerX" secondItem="SQl-fE-nr6" secondAttribute="centerX" id="D4N-d0-BEF"/>
-                                    <constraint firstItem="9TJ-Kz-G9y" firstAttribute="top" secondItem="SQl-fE-nr6" secondAttribute="top" constant="121.5" id="EbL-rS-RaN"/>
+                                    <constraint firstItem="9TJ-Kz-G9y" firstAttribute="centerX" secondItem="SQl-fE-nr6" secondAttribute="centerX" id="6Lx-gX-aoQ"/>
+                                    <constraint firstItem="9TJ-Kz-G9y" firstAttribute="centerY" secondItem="SQl-fE-nr6" secondAttribute="centerY" id="Gqz-U1-7v7"/>
+                                    <constraint firstItem="9TJ-Kz-G9y" firstAttribute="width" secondItem="SQl-fE-nr6" secondAttribute="width" multiplier="0.18" id="Gu9-oK-8Dl"/>
                                 </constraints>
                             </view>
                         </subviews>

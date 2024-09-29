@@ -37,6 +37,7 @@ class ViewController: UIViewController {
     
     var leftGame:Int = 0
     var rightGame:Int = 0
+    var isGameStarted: Bool = false
     
     var score = Score(leftScoreA: 0, rightScoreB: 0)
     
@@ -45,6 +46,11 @@ class ViewController: UIViewController {
         .landscape
     }
     
+    enum Team {
+        case left
+        case right
+    }
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -72,109 +78,17 @@ class ViewController: UIViewController {
         rightStrokeBtn.layer.borderColor = UIColor.white.cgColor
         rightStrokeBtn.alpha = 0.3
     }
+    
+    
     @IBAction func teamLGesture(_ sender: UISwipeGestureRecognizer) {
-        
-        switch sender.direction{
-        case .left :
-            score.leftScoreA += 1
-            leftScore.text = "\(score.leftScoreA)"
-            scoring(team: leftScore, score: score.leftScoreA, direction: .left, winner: nil)
-            winnerLabel[0].isHidden = true
-            winnerLabel[1].isHidden = true
-            if score.leftScoreA <= 10{
-                viewChange()
-            }
-            
-            if score.leftScoreA > 10{
-                deuceView()
-            }
-        case .right :
-            score.leftScoreA -= 1
-            if score.leftScoreA < 0 {
-                score.leftScoreA = 0
-            }
-            scoring(team: leftScore, score: score.leftScoreA, direction: .right, winner: nil)
-        default :
-            scoring(team: leftScore, score: score.leftScoreA, direction: .left, winner: nil)
-        }
-        
-        
-        switch score.leftScoreA{
-        case 0:
-            score.rightScoreB = 0
-            rightScore.text = "0\(score.rightScoreB)"
-        case 10 :
-            if score.rightScoreB == 10{
-                deuce()
-            }
-        case 11 :
-            if score.rightScoreB < 10 {
-                leftGame += 1
-                leftGameNumber.text = "\(leftGame)"
-                scoring(team: leftScore, score: score.leftScoreA, direction: .left, winner: leftName.text)
-                newGame()
-            }
-            
-        default:
-            if score.leftScoreA >= 10 , score.rightScoreB >= 10{
-                deuce()
-            }
-        }
+        handleSwipeGesture(for: .left, gesture: sender)
     }
     
     @IBAction func teamRGesture(_ sender: UISwipeGestureRecognizer) {
-        
-        
-        switch sender.direction{
-        case .left :
-            score.rightScoreB += 1
-            rightScore.text = "\(score.rightScoreB)"
-            scoring(team: rightScore, score:score.rightScoreB, direction: .left, winner: nil)
-            winnerLabel[0].isHidden = true
-            winnerLabel[1].isHidden = true
-            if score.rightScoreB <= 10{
-                viewChange()
-            }
-            
-            if score.rightScoreB > 10{
-                deuceView()
-            }
-        case .right :
-            score.rightScoreB -= 1
-            if score.rightScoreB < 0 {
-                score.rightScoreB = 0
-            }
-            scoring(team: rightScore, score: score.rightScoreB, direction: .right, winner: nil)
-        default :
-            scoring(team: rightScore, score: score.rightScoreB, direction: .left, winner: nil)
-        }
-        
-        
-        switch score.rightScoreB{
-        case 0:
-            score.rightScoreB = 0
-            rightScore.text = "0\(score.rightScoreB)"
-        case 10 :
-            if score.rightScoreB == 10{
-                deuce()
-                
-            }
-        case 11 :
-            if score.leftScoreA < 10{
-                rightGame += 1
-                rightGameNumber.text = "\(rightGame)"
-                scoring(team: rightScore, score: score.rightScoreB, direction: .left, winner: rightName.text)
-                newGame()
-            }
-            
-        default:
-            if score.leftScoreA >= 10 , score.rightScoreB >= 10{
-                deuce()
-            }
-        }
+        handleSwipeGesture(for: .right, gesture: sender)
     }
     
- 
+    
     @IBAction func changeSideBtn(_ sender: UIButton) {
         changSide()
     }
@@ -182,7 +96,7 @@ class ViewController: UIViewController {
     //重設比賽，將各隊分數歸零
     @IBAction func resetBtn(_ sender: UIButton) {
         endOfGame(winner: nil)
-        viewChange()
+        viewChange(scoreChanged: false)
         leftGame = 0
         rightGame = 0
         leftGameNumber.text = "0"
@@ -192,7 +106,58 @@ class ViewController: UIViewController {
         winnerLabel[0].isHidden = true
         winnerLabel[1].isHidden = true
         newGame()
+        isGameStarted = false
     }
+    
+    
+    private func handleSwipeGesture(for team: Team, gesture: UISwipeGestureRecognizer) {
+        if !isGameStarted {
+            isGameStarted = true
+        }
+        
+        let isLeftTeam = team == .left
+        
+        /// update score variable
+        var score = isLeftTeam ? self.score.leftScoreA : self.score.rightScoreB
+        let scoreLabel = isLeftTeam ? self.leftScore : self.rightScore
+        
+        switch gesture.direction {
+        case .left:
+            score += 1
+        case .right:
+            score -= 1
+            score = max(score,0) ///避免負分
+        default:
+            break
+        }
+        
+        
+        /// update score UI
+        scoreLabel?.text = "\(score)"
+        scoring(team: scoreLabel!, score: score, direction: gesture.direction, winner: nil)
+        
+        if isLeftTeam {
+            self.score.leftScoreA = score
+        }else{
+            self.score.rightScoreB = score
+        }
+        
+        let previousScore = score // record score before rightGenture
+        
+        if self.score.leftScoreA >= 10 && self.score.rightScoreB >= 10 {
+            if abs(self.score.leftScoreA - self.score.rightScoreB) >= 2 {
+                endOfGame(winner: isLeftTeam ? leftName.text : rightName.text )
+            }else{
+                deuce()
+            }
+        }else if score == 11 {
+            endOfGame(winner: isLeftTeam ? leftName.text : rightName.text)
+        }
+        
+        let scoreChanged = previousScore != score
+        viewChange(scoreChanged: scoreChanged)
+    }
+    
     
     
     //新的一局
@@ -215,7 +180,22 @@ class ViewController: UIViewController {
     }
     
     //view change 輪替發球
-    func viewChange(){
+    func viewChange(scoreChanged: Bool){
+        guard isGameStarted else { return }
+        
+        let leftScoreA = score.leftScoreA
+        let rightScoreB = score.rightScoreB
+        
+        if !scoreChanged {
+            return
+        }
+        
+        
+        if leftScoreA == 0 && rightScoreB == 0 || leftScoreA == 0 && rightScoreB != 0 || rightScoreB == 0 && leftScoreA != 0 {
+            return
+        }
+        
+        
         if showServe[0].isHidden == true{
             let sum = score.leftScoreA + score.rightScoreB
             if sum % 2 == 0{
@@ -257,8 +237,7 @@ class ViewController: UIViewController {
     
     
     // 判斷得分結果，設定參數，得分隊伍，目前分數，滑動方向，是哪一隊贏球，最後判斷比賽是否結束
-    func
-    scoring (team:UILabel ,score:Int,direction:UISwipeGestureRecognizer.Direction,winner:String?){
+    func scoring (team:UILabel ,score:Int,direction:UISwipeGestureRecognizer.Direction,winner:String?){
         if direction == .left{
             if score == 11{
                 endOfGame(winner: winner)
@@ -285,8 +264,7 @@ class ViewController: UIViewController {
     
     
     //判斷誰是獲勝者給予對應的數值
-    func
-    endOfGame (winner:String?){
+    func endOfGame (winner:String?){
         
         if winner == leftName.text{
             winnerLabel[0].isHidden = false
