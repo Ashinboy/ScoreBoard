@@ -281,8 +281,10 @@ class ViewController: UIViewController {
             winnerLabel[1].isHidden = true
             if leftName.text == "TEAM 1"{
                 AlertLeft()
+                leftGameNumber.text = "\(leftGame + 1)"
             }else if leftName.text == "TEAM 2"{
                 AlertRight()
+                leftGameNumber.text = "\(leftGame + 1)"
             }
             
         }else if winner == rightName.text{
@@ -290,8 +292,10 @@ class ViewController: UIViewController {
             winnerLabel[0].isHidden = true
             if rightName.text == "TEAM 1"{
                 AlertLeft()
+                rightGameNumber.text = "\(rightGame + 1)"
             }else if rightName.text == "TEAM 2"{
                 AlertRight()
+                rightGameNumber.text = "\(rightGame + 1)"
             }
         }
     }
