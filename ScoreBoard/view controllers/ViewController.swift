@@ -17,7 +17,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var rightStrokeBtn: UIButton!
     
     //serve發球
-    
+    @IBOutlet var serverSwitch: UIButton!
     @IBOutlet var showServe: [UIView]!
     var index = Int.random(in: 0...1)
     
@@ -37,7 +37,7 @@ class ViewController: UIViewController {
     
     var leftGame:Int = 0
     var rightGame:Int = 0
-    var isGameStarted: Bool = false
+//    var isGameStarted: Bool = false
     
     var score = Score(leftScoreA: 0, rightScoreB: 0)
     
@@ -54,6 +54,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.layoutIfNeeded() ///update layout UI
         // Do any additional setup after loading the view.
         leftName.text = "TEAM 1"
         rightName.text = "TEAM 2"
@@ -106,14 +107,11 @@ class ViewController: UIViewController {
         winnerLabel[0].isHidden = true
         winnerLabel[1].isHidden = true
         newGame()
-        isGameStarted = false
     }
     
     
     private func handleSwipeGesture(for team: Team, gesture: UISwipeGestureRecognizer) {
-        if !isGameStarted {
-            isGameStarted = true
-        }
+        
         
         let isLeftTeam = team == .left
         
@@ -181,11 +179,13 @@ class ViewController: UIViewController {
     
     //view change 輪替發球
     func viewChange(scoreChanged: Bool){
-        guard isGameStarted else { return }
+        
         
         let leftScoreA = score.leftScoreA
         let rightScoreB = score.rightScoreB
         
+        
+        print("as_checkScoreChangeed__:\(scoreChanged)")
         if !scoreChanged {
             return
         }
@@ -195,26 +195,36 @@ class ViewController: UIViewController {
             return
         }
         
+        let totalScore = score.leftScoreA + score.rightScoreB
         
-        if showServe[0].isHidden == true{
-            let sum = score.leftScoreA + score.rightScoreB
-            if sum % 2 == 0{
-                showServe[1].isHidden = true
-                showServe[0].isHidden = false
-            }else{
-                showServe[1].isHidden = false
-                showServe[0].isHidden = true
-            }
-        }else if showServe[0].isHidden == false{
-            let sum = score.leftScoreA + score.rightScoreB
-            if sum % 2 == 0{
-                showServe[0].isHidden = true
-                showServe[1].isHidden = false
-            }else{
-                showServe[0].isHidden = false
-                showServe[1].isHidden = true
-            }
+        if totalScore % 2 == 0 {
+            showServe[0].isHidden = false
+            showServe[1].isHidden = true
+        }else{
+            showServe[0].isHidden = true
+            showServe[1].isHidden = false
         }
+        
+        
+//        if showServe[0].isHidden == true{
+//            let sum = score.leftScoreA + score.rightScoreB
+//            if sum % 2 == 0{
+//                showServe[1].isHidden = true
+//                showServe[0].isHidden = false
+//            }else{
+//                showServe[1].isHidden = false
+//                showServe[0].isHidden = true
+//            }
+//        }else if showServe[0].isHidden == false{
+//            let sum = score.leftScoreA + score.rightScoreB
+//            if sum % 2 == 0{
+//                showServe[0].isHidden = true
+//                showServe[1].isHidden = false
+//            }else{
+//                showServe[0].isHidden = false
+//                showServe[1].isHidden = true
+//            }
+//        }
         
     }
     
