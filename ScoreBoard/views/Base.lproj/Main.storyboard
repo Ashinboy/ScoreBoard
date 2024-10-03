@@ -25,7 +25,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="844" height="390"/>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="44" translatesAutoresizingMaskIntoConstraints="NO" id="q9l-5C-QNL">
-                                <rect key="frame" x="153" y="65.666666666666686" width="538" height="259"/>
+                                <rect key="frame" x="140" y="65.666666666666686" width="564" height="259"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="6lp-qQ-yPY">
                                         <rect key="frame" x="0.0" y="0.0" width="150" height="259"/>
@@ -104,19 +104,19 @@
                                         </constraints>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="14" translatesAutoresizingMaskIntoConstraints="NO" id="hQT-1p-Yac">
-                                        <rect key="frame" x="194" y="0.0" width="150" height="205"/>
+                                        <rect key="frame" x="194" y="0.0" width="176" height="205"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="38" translatesAutoresizingMaskIntoConstraints="NO" id="onp-qA-tdD">
-                                                <rect key="frame" x="0.0" y="0.0" width="150" height="60"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="176" height="60"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NSL-h8-RBR">
-                                                        <rect key="frame" x="0.0" y="0.0" width="56" height="60"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="69" height="60"/>
                                                         <fontDescription key="fontDescription" name="DS-Digital" family="DS-Digital" pointSize="60"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rqE-dN-yVi">
-                                                        <rect key="frame" x="94" y="0.0" width="56" height="60"/>
+                                                        <rect key="frame" x="107" y="0.0" width="69" height="60"/>
                                                         <fontDescription key="fontDescription" name="DS-Digital" family="DS-Digital" pointSize="60"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
@@ -124,16 +124,13 @@
                                                 </subviews>
                                             </stackView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mVk-zm-Fvx">
-                                                <rect key="frame" x="0.0" y="74" width="150" height="131"/>
+                                                <rect key="frame" x="0.0" y="74" width="176" height="131"/>
                                                 <subviews>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="14" translatesAutoresizingMaskIntoConstraints="NO" id="bMq-Ty-LRX">
-                                                        <rect key="frame" x="8" y="22.333333333333336" width="134" height="86.333333333333314"/>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="bMq-Ty-LRX">
+                                                        <rect key="frame" x="8" y="22.333333333333336" width="160" height="86.333333333333314"/>
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cfi-yA-J9P">
-                                                                <rect key="frame" x="0.0" y="0.0" width="134" height="36"/>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="height" constant="36" id="vBe-Um-KaV"/>
-                                                                </constraints>
+                                                                <rect key="frame" x="0.0" y="0.0" width="160" height="15.333333333333334"/>
                                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                                                 <color key="tintColor" red="1" green="0.99997437" blue="1" alpha="0.8980392157" colorSpace="calibratedRGB"/>
                                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
@@ -142,8 +139,15 @@
                                                                     <action selector="changeSideBtn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="go3-8X-Rbp"/>
                                                                 </connections>
                                                             </button>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FH7-8G-osa">
+                                                                <rect key="frame" x="0.0" y="35.333333333333343" width="160" height="15.333333333333336"/>
+                                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                                <state key="normal" title="SERVER SWITCH"/>
+                                                            </button>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ccF-nK-f39">
-                                                                <rect key="frame" x="0.0" y="50" width="134" height="36.333333333333343"/>
+                                                                <rect key="frame" x="0.0" y="70.666666666666657" width="160" height="15.666666666666671"/>
                                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                                                 <color key="tintColor" red="1" green="0.99997437" blue="1" alpha="0.8980392157" colorSpace="calibratedRGB"/>
                                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
@@ -169,7 +173,7 @@
                                         </constraints>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="spe-Mg-4hZ">
-                                        <rect key="frame" x="388" y="0.0" width="150" height="259"/>
+                                        <rect key="frame" x="414" y="0.0" width="150" height="259"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WINNER" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qNq-ju-b9g">
                                                 <rect key="frame" x="0.0" y="0.0" width="150" height="24"/>
@@ -269,6 +273,7 @@
                         <outlet property="rightName" destination="965-Q7-VfX" id="z1a-7r-5aA"/>
                         <outlet property="rightScore" destination="BES-f3-NfO" id="Eip-G8-F9H"/>
                         <outlet property="rightStrokeBtn" destination="bg7-n3-YwR" id="eLj-U5-Sau"/>
+                        <outlet property="serverSwitch" destination="FH7-8G-osa" id="i2E-o2-slm"/>
                         <outletCollection property="showServe" destination="yvY-qX-6O6" collectionClass="NSMutableArray" id="UbZ-eV-DbQ"/>
                         <outletCollection property="winnerLabel" destination="r90-Bu-VGg" collectionClass="NSMutableArray" id="tfz-fh-Ln6"/>
                         <outletCollection property="winnerLabel" destination="qNq-ju-b9g" collectionClass="NSMutableArray" id="2de-SV-AwK"/>
