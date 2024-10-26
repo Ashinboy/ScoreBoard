@@ -30,8 +30,8 @@
             filePath = "ScoreBoard/view controllers/ViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "277"
-            endingLineNumber = "277"
+            startingLineNumber = "223"
+            endingLineNumber = "223"
             landmarkName = "endOfGame(winner:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -48,22 +48,6 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "147"
             endingLineNumber = "147"
-            landmarkName = "handleSwipeGesture(for:gesture:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "27889C35-7AC4-4FE5-BD9D-408DBD53B24B"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ScoreBoard/view controllers/ViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "115"
-            endingLineNumber = "115"
             landmarkName = "handleSwipeGesture(for:gesture:)"
             landmarkType = "7">
          </BreakpointContent>

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		C80E752C27DB765E0012129A /* Calculate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C80E752B27DB765E0012129A /* Calculate.swift */; };
 		C819C66827DC6EFD0021A204 /* gameState.swift in Sources */ = {isa = PBXBuildFile; fileRef = C819C66727DC6EFD0021A204 /* gameState.swift */; };
+		C87713F82CCD2C530084CA62 /* AlertManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C87713F72CCD2C530084CA62 /* AlertManager.swift */; };
 		C8EA98E02785FB75003DA8C7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8EA98DF2785FB75003DA8C7 /* AppDelegate.swift */; };
 		C8EA98E22785FB75003DA8C7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8EA98E12785FB75003DA8C7 /* SceneDelegate.swift */; };
 		C8EA98E42785FB75003DA8C7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8EA98E32785FB75003DA8C7 /* ViewController.swift */; };
@@ -21,6 +22,7 @@
 /* Begin PBXFileReference section */
 		C80E752B27DB765E0012129A /* Calculate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calculate.swift; sourceTree = "<group>"; };
 		C819C66727DC6EFD0021A204 /* gameState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = gameState.swift; sourceTree = "<group>"; };
+		C87713F72CCD2C530084CA62 /* AlertManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertManager.swift; sourceTree = "<group>"; };
 		C8EA98DC2785FB75003DA8C7 /* ScoreBoard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ScoreBoard.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8EA98DF2785FB75003DA8C7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C8EA98E12785FB75003DA8C7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -48,6 +50,7 @@
 			children = (
 				C80E752B27DB765E0012129A /* Calculate.swift */,
 				C819C66727DC6EFD0021A204 /* gameState.swift */,
+				C87713F72CCD2C530084CA62 /* AlertManager.swift */,
 			);
 			path = models;
 			sourceTree = "<group>";
@@ -174,6 +177,7 @@
 			files = (
 				C8EA98E42785FB75003DA8C7 /* ViewController.swift in Sources */,
 				C819C66827DC6EFD0021A204 /* gameState.swift in Sources */,
+				C87713F82CCD2C530084CA62 /* AlertManager.swift in Sources */,
 				C8EA98E02785FB75003DA8C7 /* AppDelegate.swift in Sources */,
 				C80E752C27DB765E0012129A /* Calculate.swift in Sources */,
 				C8EA98E22785FB75003DA8C7 /* SceneDelegate.swift in Sources */,
