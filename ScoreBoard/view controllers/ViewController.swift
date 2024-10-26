@@ -37,7 +37,7 @@ class ViewController: UIViewController {
     
     var leftGame:Int = 0
     var rightGame:Int = 0
-//    var isGameStarted: Bool = false
+    //    var isGameStarted: Bool = false
     
     var score = Score(leftScoreA: 0, rightScoreB: 0)
     var currentServeCount = 0
@@ -51,7 +51,7 @@ class ViewController: UIViewController {
         case left
         case right
     }
-
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -110,6 +110,11 @@ class ViewController: UIViewController {
         newGame()
     }
     
+    @IBAction func serverSwitchBtn(_ sender: UIButton) {
+        showServe[0].isHidden.toggle()
+        showServe[1].isHidden.toggle()
+    }
+    
     
     private func handleSwipeGesture(for team: Team, gesture: UISwipeGestureRecognizer) {
         
@@ -122,13 +127,13 @@ class ViewController: UIViewController {
         switch gesture.direction {
         case .left:
             score += 1
+            updateServeLogic()
         case .right:
             score -= 1
             score = max(score,0) ///避免負分
         default:
             break
         }
-        
         
         /// update score UI
         scoreLabel?.text = "\(score)"
@@ -154,6 +159,11 @@ class ViewController: UIViewController {
             isDeuce = false
         }
         
+        let scoreChanged = previousScore != score
+        viewChange(scoreChanged: scoreChanged)
+    }
+    
+    func updateServeLogic() {
         if isDeuce {
             showServe[0].isHidden.toggle()
             showServe[1].isHidden.toggle()
@@ -165,13 +175,7 @@ class ViewController: UIViewController {
                 showServe[1].isHidden.toggle()
             }
         }
-       
-        
-        let scoreChanged = previousScore != score
-        viewChange(scoreChanged: scoreChanged)
     }
-    
-    
     
     //新的一局
     func newGame(){
@@ -262,8 +266,6 @@ class ViewController: UIViewController {
             self.view.layoutIfNeeded()
         }
     }
-    
-    
     
     
     func changSide() {
