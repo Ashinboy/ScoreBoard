@@ -98,10 +98,6 @@
                                                 </constraints>
                                             </view>
                                         </subviews>
-                                        <constraints>
-                                            <constraint firstItem="r90-Bu-VGg" firstAttribute="leading" secondItem="6lp-qQ-yPY" secondAttribute="leading" id="FwJ-9W-Qnd"/>
-                                            <constraint firstItem="r90-Bu-VGg" firstAttribute="top" secondItem="6lp-qQ-yPY" secondAttribute="top" id="ZlK-oX-hGv"/>
-                                        </constraints>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="14" translatesAutoresizingMaskIntoConstraints="NO" id="hQT-1p-Yac">
                                         <rect key="frame" x="194" y="0.0" width="176" height="205"/>
@@ -188,6 +184,7 @@
                                                         <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" secondItem="bg7-n3-YwR" secondAttribute="height" multiplier="1:1" id="gRn-nt-337"/>
+                                                            <constraint firstAttribute="height" constant="150" id="nl4-si-1GS"/>
                                                         </constraints>
                                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                     </button>
@@ -226,11 +223,10 @@
                                                 </subviews>
                                                 <gestureRecognizers/>
                                                 <constraints>
+                                                    <constraint firstItem="bg7-n3-YwR" firstAttribute="top" secondItem="T8Z-WZ-Y22" secondAttribute="top" id="3GR-wX-R67"/>
                                                     <constraint firstItem="965-Q7-VfX" firstAttribute="top" secondItem="bg7-n3-YwR" secondAttribute="bottom" constant="20" id="5s8-Ah-ebJ"/>
                                                     <constraint firstItem="kRR-BU-xgI" firstAttribute="top" secondItem="965-Q7-VfX" secondAttribute="bottom" constant="8" symbolic="YES" id="644-s0-O4v"/>
                                                     <constraint firstItem="BES-f3-NfO" firstAttribute="leading" secondItem="T8Z-WZ-Y22" secondAttribute="leading" id="92a-wY-gXD"/>
-                                                    <constraint firstItem="BES-f3-NfO" firstAttribute="top" secondItem="T8Z-WZ-Y22" secondAttribute="top" id="HGk-ig-PBP"/>
-                                                    <constraint firstItem="bg7-n3-YwR" firstAttribute="leading" secondItem="965-Q7-VfX" secondAttribute="leading" id="Iwk-vZ-61I"/>
                                                     <constraint firstAttribute="bottom" secondItem="kRR-BU-xgI" secondAttribute="bottom" constant="10" id="JKa-oV-rVG"/>
                                                     <constraint firstAttribute="trailing" secondItem="BES-f3-NfO" secondAttribute="trailing" id="JiD-CW-3WM"/>
                                                     <constraint firstItem="BES-f3-NfO" firstAttribute="bottom" secondItem="bg7-n3-YwR" secondAttribute="bottom" id="Oby-JH-Ng3"/>
@@ -239,6 +235,7 @@
                                                     <constraint firstItem="bg7-n3-YwR" firstAttribute="trailing" secondItem="BES-f3-NfO" secondAttribute="trailing" id="kll-HR-NiY"/>
                                                     <constraint firstAttribute="trailing" secondItem="kRR-BU-xgI" secondAttribute="trailing" constant="65" id="lGk-TT-93o"/>
                                                     <constraint firstItem="bg7-n3-YwR" firstAttribute="trailing" secondItem="965-Q7-VfX" secondAttribute="trailing" id="rzw-wA-5kb"/>
+                                                    <constraint firstItem="BES-f3-NfO" firstAttribute="leading" secondItem="965-Q7-VfX" secondAttribute="leading" id="tBA-4n-8EY"/>
                                                     <constraint firstItem="kRR-BU-xgI" firstAttribute="leading" secondItem="T8Z-WZ-Y22" secondAttribute="leading" constant="65" id="wr4-OH-baB"/>
                                                 </constraints>
                                             </view>
@@ -246,7 +243,8 @@
                                     </stackView>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="6lp-qQ-yPY" firstAttribute="bottom" secondItem="spe-Mg-4hZ" secondAttribute="bottom" id="nZ7-10-9ZD"/>
+                                    <constraint firstItem="6lp-qQ-yPY" firstAttribute="centerY" secondItem="q9l-5C-QNL" secondAttribute="centerY" id="9SE-bu-aXe"/>
+                                    <constraint firstItem="spe-Mg-4hZ" firstAttribute="centerY" secondItem="q9l-5C-QNL" secondAttribute="centerY" id="THV-YT-2Sv"/>
                                 </constraints>
                             </stackView>
                         </subviews>

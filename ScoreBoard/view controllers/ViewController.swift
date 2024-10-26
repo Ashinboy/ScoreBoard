@@ -60,8 +60,8 @@ class ViewController: UIViewController {
         rightName.text = "TEAM 2"
         
         showServe[index].isHidden = true
-        winnerLabel[0].isHidden = true
-        winnerLabel[1].isHidden = true
+        winnerLabel[0].alpha = 0
+        winnerLabel[1].alpha = 0
         
         //button stroke
         
@@ -276,27 +276,29 @@ class ViewController: UIViewController {
     //判斷誰是獲勝者給予對應的數值
     func endOfGame (winner:String?){
         
+        
         if winner == leftName.text{
-            winnerLabel[0].isHidden = false
-            winnerLabel[1].isHidden = true
-            if leftName.text == "TEAM 1"{
-                AlertLeft()
-                leftGameNumber.text = "\(leftGame + 1)"
-            }else if leftName.text == "TEAM 2"{
-                AlertRight()
-                leftGameNumber.text = "\(leftGame + 1)"
+            UIView.animate(withDuration: 0.3) {
+                self.winnerLabel[0].alpha = 1
+                self.winnerLabel[1].alpha = 0
+                self.view.layoutIfNeeded()
             }
+            leftGameNumber.text = "\(leftGame + 1)"
+            AlertLeft()
             
         }else if winner == rightName.text{
-            winnerLabel[1].isHidden = false
-            winnerLabel[0].isHidden = true
-            if rightName.text == "TEAM 1"{
-                AlertLeft()
-                rightGameNumber.text = "\(rightGame + 1)"
-            }else if rightName.text == "TEAM 2"{
-                AlertRight()
-                rightGameNumber.text = "\(rightGame + 1)"
+            UIView.animate(withDuration: 0.3) {
+                self.winnerLabel[1].alpha = 1
+                self.winnerLabel[0].alpha = 0
+                self.view.layoutIfNeeded()
             }
+            rightGameNumber.text = "\(rightGame + 1)"
+            AlertRight()
+           
+        }
+        
+        UIView.animate(withDuration: 0.3) {
+            self.view.layoutIfNeeded()
         }
     }
     
