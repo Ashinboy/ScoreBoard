@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class MainScoreViewController: UIViewController {
     
     
     //winnerLabel
@@ -37,10 +37,11 @@ class ViewController: UIViewController {
     
     var leftGame:Int = 0
     var rightGame:Int = 0
-//    var isGameStarted: Bool = false
+    //    var isGameStarted: Bool = false
     
     var score = Score(leftScoreA: 0, rightScoreB: 0)
-    
+    var currentServeCount = 0
+    var isDeuce = false
     
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask{
         .landscape
@@ -50,7 +51,7 @@ class ViewController: UIViewController {
         case left
         case right
     }
-
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,9 +60,9 @@ class ViewController: UIViewController {
         leftName.text = "TEAM 1"
         rightName.text = "TEAM 2"
         
-        showServe[index].isHidden = true
-        winnerLabel[0].isHidden = true
-        winnerLabel[1].isHidden = true
+        showServe[1].isHidden = true
+        winnerLabel[0].alpha = 0
+        winnerLabel[1].alpha = 0
         
         //button stroke
         
@@ -104,14 +105,18 @@ class ViewController: UIViewController {
         rightGameNumber.text = "0"
         leftName.text = "TEAM 1"
         rightName.text = "TEAM 2"
-        winnerLabel[0].isHidden = true
-        winnerLabel[1].isHidden = true
+        winnerLabel[0].alpha = 0
+        winnerLabel[1].alpha = 0
         newGame()
+    }
+    
+    @IBAction func serverSwitchBtn(_ sender: UIButton) {
+        showServe[0].isHidden.toggle()
+        showServe[1].isHidden.toggle()
     }
     
     
     private func handleSwipeGesture(for team: Team, gesture: UISwipeGestureRecognizer) {
-        
         
         let isLeftTeam = team == .left
         
@@ -122,13 +127,13 @@ class ViewController: UIViewController {
         switch gesture.direction {
         case .left:
             score += 1
+            updateServeLogic()
         case .right:
             score -= 1
             score = max(score,0) ///避免負分
         default:
             break
         }
-        
         
         /// update score UI
         scoreLabel?.text = "\(score)"
@@ -146,17 +151,31 @@ class ViewController: UIViewController {
             if abs(self.score.leftScoreA - self.score.rightScoreB) >= 2 {
                 endOfGame(winner: isLeftTeam ? leftName.text : rightName.text )
             }else{
-                deuce()
+                isDeuce = true
             }
         }else if score == 11 {
             endOfGame(winner: isLeftTeam ? leftName.text : rightName.text)
+        }else{
+            isDeuce = false
         }
         
         let scoreChanged = previousScore != score
         viewChange(scoreChanged: scoreChanged)
     }
     
-    
+    func updateServeLogic() {
+        if isDeuce {
+            showServe[0].isHidden.toggle()
+            showServe[1].isHidden.toggle()
+        }else{
+            currentServeCount += 1
+            if currentServeCount >= 2 {
+                currentServeCount = 0
+                showServe[0].isHidden.toggle()
+                showServe[1].isHidden.toggle()
+            }
+        }
+    }
     
     //新的一局
     func newGame(){
@@ -164,84 +183,15 @@ class ViewController: UIViewController {
         score.rightScoreB = 0
         leftScore.text = "00"
         rightScore.text = "00"
-        
-        if leftName.text == "TEAM 1"{
-            leftName.text = "TEAM 1"
-        }else if leftName.text == "TEAM 2"{
-            leftName.text = "TEAM 2"
-        }else if rightName.text == "TEAM 2"{
-            rightName.text = "TEAM 2"
-        }else if rightName.text == "TEAM 1"{
-            rightName.text = "TEAM 1"
-            
-        }
+        isDeuce = false
     }
     
     //view change 輪替發球
     func viewChange(scoreChanged: Bool){
         
-        
-        let leftScoreA = score.leftScoreA
-        let rightScoreB = score.rightScoreB
-        
-        
         print("as_checkScoreChangeed__:\(scoreChanged)")
         if !scoreChanged {
             return
-        }
-        
-        
-        if leftScoreA == 0 && rightScoreB == 0 || leftScoreA == 0 && rightScoreB != 0 || rightScoreB == 0 && leftScoreA != 0 {
-            return
-        }
-        
-        let totalScore = score.leftScoreA + score.rightScoreB
-        
-        if totalScore % 2 == 0 {
-            showServe[0].isHidden = false
-            showServe[1].isHidden = true
-        }else{
-            showServe[0].isHidden = true
-            showServe[1].isHidden = false
-        }
-        
-        
-//        if showServe[0].isHidden == true{
-//            let sum = score.leftScoreA + score.rightScoreB
-//            if sum % 2 == 0{
-//                showServe[1].isHidden = true
-//                showServe[0].isHidden = false
-//            }else{
-//                showServe[1].isHidden = false
-//                showServe[0].isHidden = true
-//            }
-//        }else if showServe[0].isHidden == false{
-//            let sum = score.leftScoreA + score.rightScoreB
-//            if sum % 2 == 0{
-//                showServe[0].isHidden = true
-//                showServe[1].isHidden = false
-//            }else{
-//                showServe[0].isHidden = false
-//                showServe[1].isHidden = true
-//            }
-//        }
-        
-    }
-    
-    //deuce view deuce的輪替
-    func deuceView(){
-        if showServe[0].isHidden == false{
-            let sum = score.leftScoreA - score.rightScoreB
-            if sum  != 1 || sum == 0 || sum == 1{
-                showServe[1].isHidden = false
-                showServe[0].isHidden = true
-            }
-        }else{
-            let sum = score.leftScoreA - score.rightScoreB
-            if sum != 1 || sum == 0 || sum == 1{
-                showServe[1].isHidden = true
-                showServe[0].isHidden = false
-            }
         }
     }
     
@@ -276,73 +226,46 @@ class ViewController: UIViewController {
     //判斷誰是獲勝者給予對應的數值
     func endOfGame (winner:String?){
         
-        if winner == leftName.text{
-            winnerLabel[0].isHidden = false
-            winnerLabel[1].isHidden = true
-            if leftName.text == "TEAM 1"{
-                AlertLeft()
-            }else if leftName.text == "TEAM 2"{
-                AlertRight()
-            }
-            
-        }else if winner == rightName.text{
-            winnerLabel[1].isHidden = false
-            winnerLabel[0].isHidden = true
-            if rightName.text == "TEAM 1"{
-                AlertLeft()
-            }else if rightName.text == "TEAM 2"{
-                AlertRight()
-            }
+        if winner == nil {
+            winnerLabel[0].alpha = 0
+            winnerLabel[1].alpha = 0
+            return
         }
-    }
-    
-    //deuce的方法
-    func deuce(){
-        let sum = score.leftScoreA - score.rightScoreB
-        let sum2 = score.rightScoreB - score.leftScoreA
-        if sum == 2 {
-            winnerLabel[0].isHidden = false
-            winnerLabel[1].isHidden = true
+        
+        if winner == leftName.text{
+            UIView.animate(withDuration: 0.3) {
+                self.winnerLabel[0].alpha = 1
+                self.winnerLabel[1].alpha = 0
+                self.view.layoutIfNeeded()
+            }
             leftGame += 1
             leftGameNumber.text = "\(leftGame)"
-            //UIAlert
-            if leftName.text == "TEAM 1"{
-                AlertLeft()
-            }else if leftName.text == "TEAM 2"{
-                AlertRight()
+            AlertManager.showAlert(on: self, title: "Amazing!", message: "Congratulations to team 1 for the win!") {
+                self.winnerLabel[1].alpha = 0
+                self.winnerLabel[0].alpha = 0
             }
+            newGame()
             
-        }else if sum2 == 2{
-            winnerLabel[1].isHidden = false
-            winnerLabel[0].isHidden = true
+        }else if winner == rightName.text{
+            UIView.animate(withDuration: 0.3) {
+                self.winnerLabel[1].alpha = 1
+                self.winnerLabel[0].alpha = 0
+                self.view.layoutIfNeeded()
+            }
             rightGame += 1
             rightGameNumber.text = "\(rightGame)"
-            if rightName.text == "TEAM 1"{
-                AlertLeft()
-            }else if rightName.text == "TEAM 2"{
-                AlertRight()
+            AlertManager.showAlert(on: self, title: "Amazing!", message: "Congratulations to team 2 for the win!") {
+                self.winnerLabel[1].alpha = 0
+                self.winnerLabel[0].alpha = 0
             }
+            newGame()
+           
+        }
+        
+        UIView.animate(withDuration: 0.3) {
+            self.view.layoutIfNeeded()
         }
     }
-    
-    //UIAlert的方法
-    func AlertLeft(){
-        let controller = UIAlertController(title: "Amazing!", message: "Congratulations to team 1 for the win!", preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "Done", style: .default, handler: nil)
-        controller.addAction(okAction)
-        present(controller, animated: true, completion: nil)
-        newGame()
-    }
-    
-    func AlertRight(){
-        let controller = UIAlertController(title: "Amazing!", message: "Congratulations to team 2 for the win!", preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "Done", style: .default, handler: nil)
-        controller.addAction(okAction)
-        present(controller, animated: true, completion: nil)
-        newGame()
-    }
-    
-    
     
     
     func changSide() {

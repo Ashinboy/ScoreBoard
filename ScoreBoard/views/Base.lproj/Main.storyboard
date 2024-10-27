@@ -13,10 +13,10 @@
         </array>
     </customFonts>
     <scenes>
-        <!--View Controller-->
+        <!--Main Score View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="ScoreBoard" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="MainScoreViewController" customModule="ScoreBoard" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="844" height="390"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -98,10 +98,6 @@
                                                 </constraints>
                                             </view>
                                         </subviews>
-                                        <constraints>
-                                            <constraint firstItem="r90-Bu-VGg" firstAttribute="leading" secondItem="6lp-qQ-yPY" secondAttribute="leading" id="FwJ-9W-Qnd"/>
-                                            <constraint firstItem="r90-Bu-VGg" firstAttribute="top" secondItem="6lp-qQ-yPY" secondAttribute="top" id="ZlK-oX-hGv"/>
-                                        </constraints>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="14" translatesAutoresizingMaskIntoConstraints="NO" id="hQT-1p-Yac">
                                         <rect key="frame" x="194" y="0.0" width="176" height="205"/>
@@ -144,7 +140,10 @@
                                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                                                <state key="normal" title="SERVER SWITCH"/>
+                                                                <state key="normal" title="SWITCH SERVER"/>
+                                                                <connections>
+                                                                    <action selector="serverSwitchBtn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="VUe-ec-qn1"/>
+                                                                </connections>
                                                             </button>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ccF-nK-f39">
                                                                 <rect key="frame" x="0.0" y="70.666666666666657" width="160" height="15.666666666666671"/>
@@ -188,6 +187,7 @@
                                                         <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" secondItem="bg7-n3-YwR" secondAttribute="height" multiplier="1:1" id="gRn-nt-337"/>
+                                                            <constraint firstAttribute="height" constant="150" id="nl4-si-1GS"/>
                                                         </constraints>
                                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                     </button>
@@ -203,9 +203,6 @@
                                                     <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BES-f3-NfO">
                                                         <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
                                                         <gestureRecognizers/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="150" id="x1Q-3Q-c31"/>
-                                                        </constraints>
                                                         <fontDescription key="fontDescription" name="DS-Digital" family="DS-Digital" pointSize="100"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
@@ -229,11 +226,10 @@
                                                 </subviews>
                                                 <gestureRecognizers/>
                                                 <constraints>
+                                                    <constraint firstItem="bg7-n3-YwR" firstAttribute="top" secondItem="T8Z-WZ-Y22" secondAttribute="top" id="3GR-wX-R67"/>
                                                     <constraint firstItem="965-Q7-VfX" firstAttribute="top" secondItem="bg7-n3-YwR" secondAttribute="bottom" constant="20" id="5s8-Ah-ebJ"/>
                                                     <constraint firstItem="kRR-BU-xgI" firstAttribute="top" secondItem="965-Q7-VfX" secondAttribute="bottom" constant="8" symbolic="YES" id="644-s0-O4v"/>
                                                     <constraint firstItem="BES-f3-NfO" firstAttribute="leading" secondItem="T8Z-WZ-Y22" secondAttribute="leading" id="92a-wY-gXD"/>
-                                                    <constraint firstItem="BES-f3-NfO" firstAttribute="top" secondItem="T8Z-WZ-Y22" secondAttribute="top" id="HGk-ig-PBP"/>
-                                                    <constraint firstItem="bg7-n3-YwR" firstAttribute="leading" secondItem="965-Q7-VfX" secondAttribute="leading" id="Iwk-vZ-61I"/>
                                                     <constraint firstAttribute="bottom" secondItem="kRR-BU-xgI" secondAttribute="bottom" constant="10" id="JKa-oV-rVG"/>
                                                     <constraint firstAttribute="trailing" secondItem="BES-f3-NfO" secondAttribute="trailing" id="JiD-CW-3WM"/>
                                                     <constraint firstItem="BES-f3-NfO" firstAttribute="bottom" secondItem="bg7-n3-YwR" secondAttribute="bottom" id="Oby-JH-Ng3"/>
@@ -242,6 +238,7 @@
                                                     <constraint firstItem="bg7-n3-YwR" firstAttribute="trailing" secondItem="BES-f3-NfO" secondAttribute="trailing" id="kll-HR-NiY"/>
                                                     <constraint firstAttribute="trailing" secondItem="kRR-BU-xgI" secondAttribute="trailing" constant="65" id="lGk-TT-93o"/>
                                                     <constraint firstItem="bg7-n3-YwR" firstAttribute="trailing" secondItem="965-Q7-VfX" secondAttribute="trailing" id="rzw-wA-5kb"/>
+                                                    <constraint firstItem="BES-f3-NfO" firstAttribute="leading" secondItem="965-Q7-VfX" secondAttribute="leading" id="tBA-4n-8EY"/>
                                                     <constraint firstItem="kRR-BU-xgI" firstAttribute="leading" secondItem="T8Z-WZ-Y22" secondAttribute="leading" constant="65" id="wr4-OH-baB"/>
                                                 </constraints>
                                             </view>
@@ -249,7 +246,8 @@
                                     </stackView>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="6lp-qQ-yPY" firstAttribute="bottom" secondItem="spe-Mg-4hZ" secondAttribute="bottom" id="nZ7-10-9ZD"/>
+                                    <constraint firstItem="6lp-qQ-yPY" firstAttribute="centerY" secondItem="q9l-5C-QNL" secondAttribute="centerY" id="9SE-bu-aXe"/>
+                                    <constraint firstItem="spe-Mg-4hZ" firstAttribute="centerY" secondItem="q9l-5C-QNL" secondAttribute="centerY" id="THV-YT-2Sv"/>
                                 </constraints>
                             </stackView>
                         </subviews>
