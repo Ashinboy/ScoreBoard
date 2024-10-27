@@ -4,6 +4,11 @@
 <dict>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
+	<key>UILaunchScreen</key>
+	<dict>
+		<key>UIImageName</key>
+		<string>Launch Screen</string>
+	</dict>
 	<key>UIAppFonts</key>
 	<array>
 		<string>DS-DIGI.TTF</string>
@@ -27,9 +32,5 @@
 			</array>
 		</dict>
 	</dict>
-	<key>CFBundleDisplayName</key>
-	<string>ScoreBoard</string>
-	<key>CFBundleIconName</key>
-	<string>AppIcon</string>
 </dict>
 </plist>
