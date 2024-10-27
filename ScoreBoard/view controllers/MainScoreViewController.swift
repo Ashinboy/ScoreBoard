@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class MainScoreViewController: UIViewController {
     
     
     //winnerLabel
@@ -60,7 +60,7 @@ class ViewController: UIViewController {
         leftName.text = "TEAM 1"
         rightName.text = "TEAM 2"
         
-        showServe[index].isHidden = true
+        showServe[1].isHidden = true
         winnerLabel[0].alpha = 0
         winnerLabel[1].alpha = 0
         
